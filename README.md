@@ -20,7 +20,7 @@ $client  = $factory->factoryClientUsingIni('/path/to/configuration.ini');
 echo ($client->getAPIVersion() . "\n");
 ```
 
-You can also instantiate Liaison instances directly:
+You can also instantiate Liaison directly:
 
 ```php
 <?php
