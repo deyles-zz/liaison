@@ -136,6 +136,10 @@ class RemoteProcedureCallNetworkDelegate {
         $request->setMethod('POST');
         $request->setUrl('/RPC2');
         $request->setBody($xml);
+        $request->setAuthInformation(
+            $this->configuration->get('username', 'rpc'),
+            $this->configuration->get('password', 'rpc')
+        );
         return $request->toString();
     }
         
