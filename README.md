@@ -1,10 +1,12 @@
-# Liaison - talking to your supervisor so you don't have to.
+# Liaison
+
+## talking to your supervisor so you don't have to.
 
 Liaison is an [XML RPC](http://supervisord.org/api.html) client for [supervisord](http://supervisord.org).
 The intent of Liaison is to provide a simple, structured interface to allow the management of supervisord
 directly from [PHP](http://www.php.net) applications.
 
-# How to Liaison... 
+## How to Liaison... 
 
 Using Liaison is really simple:
 
@@ -40,7 +42,7 @@ $configuration = new Configuration(array(
 $client = new Liaison($configuration);
 ```
 
-# License
+## License
 
 Copyright (c) 2013, Dan Eyles (dan [at] irlgaming [dot] com)
 All rights reserved.
