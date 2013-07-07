@@ -1,13 +1,27 @@
 {
     "name": "dan-eyles/liaison",
+    "version": 0.1,
     "type": "library",
     "description": "supervisord XML RPC client",
     "keywords": ["supervisor", "supervisord"],
-    "homepage": "http://github.com/dan-eyles/liaison",
+    "homepage": "https://github.com/dan-eyles/liaison",
     "authors": [
         {
             "name": "Dan Eyles",
             "email": "dan@irlgaming.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Liaison\\client\\" : "lib/client",
+            "Liaison\\util\\"   : "lib/util",
+            "Liaison\\rpc\\"    : "lib/rpc"
+        }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "https://github.com/dan-eyles/liaison"
         }
     ],
     "require": {
