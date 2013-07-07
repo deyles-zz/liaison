@@ -36,10 +36,22 @@ require_once('./lib/client/Liaison.php');
 $configuration = new Configuration(array(
     'rpc' => array(
         'host' => 'your-hostname.com',
-        'port' => '9001'
+        'port' => '9001',
+        'username' => 'mysupervisorduser',
+        'password' => 'mysupervisordpass'
     )
 ));
 $client = new Liaison($configuration);
+```
+
+All methods provided by the supervisord RPC server are implicitly supported by 
+Liaison, using the same signatures defined in the API spec:
+
+```php
+$client->getSupervisorVersion();
+$client->getProcessInfo('myprocess');
+$client->stopProcessGroup('myprocess', false);
+$client->clearAllProcessLogs();
 ```
 
 ## License

@@ -58,9 +58,9 @@ class ConcreteXmlRpcAdaptor implements IXmlRpcAdaptor {
     public function connect($hostname, $port) {
         $errno = -1;
         $errstr = '';
-        $socket = @fsockopen(
-            $hostname, 
-            $port, 
+        $url    = 'tcp://' .$hostname . ':' . $port;
+        $socket = stream_socket_client(
+            $url, 
             $errno, 
             $errstr
         );
@@ -103,11 +103,15 @@ class ConcreteXmlRpcAdaptor implements IXmlRpcAdaptor {
         $buffer  = '';
         while (true) {
             $buffer .= @fgets($socket, 512);
-            if (strcasecmp(substr($buffer, -18, 17), '</methodResponse>') === 0) {
+            if (strcasecmp(substr($buffer, -18, 17), '</methodResponse>') === 0
+                    || strcasecmp(substr($buffer, -9, 7), '</body>') === 0) {
                 break;
             }
         }
         $message = @http_parse_message($buffer);
+        if ($message->responseCode != 200) {
+            throw new RemoteProcedureCallException($message->body);
+        }
         return $message->body;
     }
 

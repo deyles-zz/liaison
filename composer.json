@@ -1,6 +1,6 @@
 {
     "name": "dan-eyles/liaison",
-    "version": 0.1,
+    "version": "0.1",
     "type": "library",
     "description": "supervisord XML RPC client",
     "keywords": ["supervisor", "supervisord"],
