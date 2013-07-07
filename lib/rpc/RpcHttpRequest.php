@@ -31,6 +31,20 @@ class RpcHttpRequest {
     private $body;
 
     /**
+     * The Basic auth username
+     * 
+     * @var string 
+     */    
+    private $username;
+
+    /**
+     * The Basic auth password
+     * 
+     * @var string 
+     */        
+    private $password;
+    
+    /**
      * Constructs a new request container
      * @param string $method
      * @param string $url
@@ -65,13 +79,23 @@ class RpcHttpRequest {
     public function getBody() {
         return $this->body;
     }
+
+    public function setAuthInformation($username, $password) {
+        $this->username = $username;
+        $this->password = $password;
+    }    
     
     private function buildRequest() {
         return $this->method . ' ' . $this->url . " HTTP/1.1\r\n";
     }
     
     private function buildHeaders() {
-        return 'Content-Length: ' . strlen($this->body) . "\r\n\r\n";
+        $headers = 'Content-Length: ' . strlen($this->body) . "\r\n";
+        if (!empty($this->username) && !empty($this->password)) {
+            $headers .= 'Authorization: Basic ' . 
+                    base64_encode($this->username . ':' . $this->password) . "\r\n";
+        }
+        return $headers . "\r\n";
     }
     
     /**
